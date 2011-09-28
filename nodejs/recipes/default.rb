@@ -9,6 +9,9 @@ bash "compile_nodejs_source" do
     git checkout #{node[:nodejs][:version]}
     ./configure && make && make install
   EOH
+  not_if do
+    File.exists?("/usr/local/bin/node")
+  end
 end
 
 bash "install_npm" do
@@ -17,4 +20,7 @@ bash "install_npm" do
   code <<-EOH
     curl http://npmjs.org/install.sh | clean=no sh
   EOH
+  not_if do
+    File.exists?("/usr/local/bin/npm")
+  end
 end
