@@ -6,7 +6,7 @@ bash "compile_nodejs_source" do
   code <<-EOH
     git clone https://github.com/joyent/node.git
     cd node
-    git checkout #{node[:node][:version]}
+    git checkout #{node[:nodejs][:version]}
     ./configure && make && make install
   EOH
 end
