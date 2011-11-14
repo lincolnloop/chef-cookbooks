@@ -6,17 +6,17 @@ bash "compile nodejs from source" do
   user "root"
   cwd "/usr/local/src"
   code <<-EOH
-    if [ ! -f node-#{node[:nodejs][:version]}.tar.gz ];
+    if [ ! -f node-v#{node[:nodejs][:version]}.tar.gz ];
     then
-      wget http://nodejs.org/dist/#{node[:nodejs][:version]}/node-#{node[:nodejs][:version]}.tar.gz
+      wget http://nodejs.org/dist/v#{node[:nodejs][:version]}/node-v#{node[:nodejs][:version]}.tar.gz
     fi
     
-    if [ ! -d node-#{node[:nodejs][:version]} ];
+    if [ ! -d node-v#{node[:nodejs][:version]} ];
     then
-      tar zxf node-#{node[:nodejs][:version]}.tar.gz
+      tar zxf node-v#{node[:nodejs][:version]}.tar.gz
     fi
     
-    cd node-#{node[:nodejs][:version]}
+    cd node-v#{node[:nodejs][:version]}
     ./configure && make && make install
   EOH
   not_if "/usr/local/bin/node -v 2>&1 | grep 'v#{node[:nodejs][:version]}'"
