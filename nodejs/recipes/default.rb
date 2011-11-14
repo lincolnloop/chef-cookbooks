@@ -11,7 +11,7 @@ bash "compile nodejs from source" do
     cd node-#{node[:nodejs][:version]}
     ./configure && make && make install
   EOH
-  not_if "#{node[:nodejs][:dir]}/bin/node -v 2>&1 | grep 'v#{node[:nodejs][:version]}'"
+  not_if "/usr/local/bin/node -v 2>&1 | grep 'v#{node[:nodejs][:version]}'"
 end
 
 bash "install_npm" do
