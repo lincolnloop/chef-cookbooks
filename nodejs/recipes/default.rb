@@ -4,10 +4,18 @@ package "libssl-dev"
 
 bash "compile nodejs from source" do
   user "root"
-  cwd "/tmp/"
+  cwd "/usr/local/src"
   code <<-EOH
-    wget http://nodejs.org/dist/#{node[:nodejs][:version]}/node-#{node[:nodejs][:version]}.tar.gz
-    tar zxf node-#{node[:nodejs][:version]}.tar.gz
+    if [ ! -f node-#{node[:nodejs][:version]}.tar.gz ];
+    then
+      wget http://nodejs.org/dist/#{node[:nodejs][:version]}/node-#{node[:nodejs][:version]}.tar.gz
+    fi
+    
+    if [ ! -d node-#{node[:nodejs][:version]} ];
+    then
+      tar zxf node-#{node[:nodejs][:version]}.tar.gz
+    fi
+    
     cd node-#{node[:nodejs][:version]}
     ./configure && make && make install
   EOH
