@@ -14,9 +14,10 @@ Read the documentation [here][1].
 Many of these cookbooks came from the [Opscode repository][2], but
 they have been heavily modified.  Some of the ideas came from Eric Holscher's
 great [blog posts][3] about using Chef with Django.  The node.js cookbook was
-stripped down (a lot) from [Digital Butter's][4] version.
+stripped down (a lot) from [Digital Butter's][4] version, and combined with elements of the recipe from [Marius Ducea][5].
 
 [1]: http://lincolnloop.github.com/chef-cookbooks/
 [2]: http://github.com/opscode/cookbooks
 [3]: http://ericholscher.com/blog/2010/nov/8/building-django-app-server-chef/
 [4]: https://github.com/digitalbutter/cookbook-node/
+[5]: https://github.com/mdxp/cookbooks/tree/master/nodejs

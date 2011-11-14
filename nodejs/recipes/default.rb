@@ -1,17 +1,17 @@
+package "build-essential"
 package "curl"
 package "libssl-dev"
 
-bash "compile_nodejs_source" do
+bash "compile nodejs from source" do
+  user "root"
   cwd "/tmp/"
   code <<-EOH
-    git clone https://github.com/joyent/node.git
-    cd node
-    git checkout #{node[:nodejs][:version]}
+    wget http://nodejs.org/dist/#{node[:nodejs][:version]}/node-#{node[:nodejs][:version]}.tar.gz
+    tar zxf node-#{node[:nodejs][:version]}.tar.gz
+    cd node-#{node[:nodejs][:version]}
     ./configure && make && make install
   EOH
-  not_if do
-    File.exists?("/usr/local/bin/node")
-  end
+  not_if "#{node[:nodejs][:dir]}/bin/node -v 2>&1 | grep 'v#{node[:nodejs][:version]}'"
 end
 
 bash "install_npm" do
