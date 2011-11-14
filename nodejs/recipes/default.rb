@@ -1,4 +1,3 @@
-package "build-essential"
 package "curl"
 package "libssl-dev"
 
@@ -22,7 +21,7 @@ bash "compile nodejs from source" do
   not_if "/usr/local/bin/node -v 2>&1 | grep 'v#{node[:nodejs][:version]}'"
 end
 
-bash "install_npm" do
+bash "install npm" do
   user "root"
   cwd "/tmp/"
   code <<-EOH
