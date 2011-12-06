@@ -11,7 +11,8 @@ module PostgreSQL
         :host => new_resource.host,
         :port => new_resource.port,
         :user => new_resource.username,
-        :password =>new_resource.password
+        :password =>new_resource.password,
+        :dbname => new_resource.connectdb
       )
     end
   end
