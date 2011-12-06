@@ -2,10 +2,11 @@ Chef Cookbooks
 ==============
 
 A set of cookbooks to use Chef for managing configuration for Django on Ubuntu
-servers. These cookbooks are designed to be used to handle everything except
-for the deployment, which can be handled with a separate tool like Fabric. In
-the future, these cookbooks will likely be updated to take advantage of Chef's
-*deploy* resource to manage the checkout of the code as well.
+servers (currently tracking Maverick and above). These cookbooks are designed
+to be used to handle everything except for the deployment, which can be handled
+with a separate tool like Fabric. In the future, these cookbooks will likely be
+updated to take advantage of Chef's *deploy* resource to manage the checkout of
+the code as well.
 
 Read the documentation [here][1].
 

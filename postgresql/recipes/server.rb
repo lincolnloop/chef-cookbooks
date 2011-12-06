@@ -1,29 +1,13 @@
 include_recipe "postgresql::client"
 
-if node[:postgresql][:version] == "9.0"
-  # Add the needed PPA if PostgreSQL 9.0 is desired
-  execute "add-apt-repository" do
-    command "add-apt-repository ppa:pitti/postgresql && apt-get update"
-    creates "/etc/apt/sources.list/d/pitti-postgresql-%s.list" % node[:lsb][:codename]
-  end
-end
-
 %w{postgresql postgresql-server-dev-%s postgresql-contrib-%s}.each do |pkg|
   package pkg % node[:postgresql][:version] do
     action :upgrade
   end
 end
 
-if node[:platform] == "ubuntu" and node[:platform_version].to_f >= 10.10
-  # The version number was removed in Maverick
-  postgresql_service = "postgresql"
-else
-  postgresql_service = "postgresql-#{node[:postgresql][:version]}"
-end
-  
-
 service "postgresql" do
-  service_name postgresql_service
+  service_name "postgresql"
   supports :restart => true, :status => true, :reload => true
   action :nothing
 end
