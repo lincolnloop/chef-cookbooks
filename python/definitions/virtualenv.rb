@@ -34,7 +34,7 @@ define :virtualenv, :action => :create, :owner => "root", :mode => 0755,
     execute "create-virtualenv-#{name}" do
       user params[:owner]
       group group
-      command "virtualenv #{path}"
+      command "virtualenv --system-site-packages #{path}"
       not_if "test -f #{path}/bin/python"
     end
     
