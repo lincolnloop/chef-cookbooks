@@ -37,21 +37,26 @@ unless Chef::Config[:solo]
   end
 end
 
-# Create users and grant privileges using the grants.sql template
+# Create users and grant privelages using the grants.sql template
 
 grants_path = "/etc/postgresql/#{node[:postgresql][:version]}/main/grants.sql"
 
-template grants_path do
-  path grants_path
-  source "grants.sql.erb"
-  owner "root"
-  group "root"
-  mode "0600"
-  action :create
-  notifies :run, "execute[postgresql-install-privileges]"
+begin
+  t = resources(:template => grants_path)
+rescue
+  Chef::Log.debug("Could not find previously defined grants.sql resource")
+  t = template grants_path do
+    path grants_path
+    source "grants.sql.erb"
+    owner "root"
+    group "root"
+    mode "0600"
+    action :create
+  end
 end
 
 execute "postgresql-install-privileges" do
   command "cat #{grants_path} | sudo -u postgres psql"
   action :nothing
+  subscribes :run, resources(:template => grants_path), :immediately
 end
