@@ -35,7 +35,7 @@ if node.attribute?("hosts")
   end
 end
 
-template "/etc/sysctl" do
+template "/etc/sysctl.conf" do
   source "sysctl.conf.erb"
   mode 644
   owner "root"
