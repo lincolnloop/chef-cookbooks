@@ -34,3 +34,10 @@ if node.attribute?("hosts")
     variables :hosts => node[:hosts] || {}
   end
 end
+
+template "/etc/sysctl" do
+  source "sysctl.conf.erb"
+  mode 644
+  owner "root"
+  group "root"
+end
