@@ -7,6 +7,9 @@ default[:postgresql][:shared_buffers] = "24MB"
 default[:postgresql][:work_mem] = "1MB"
 default[:postgresql][:checkpoint_segments] = 3
 default[:postgresql][:effective_cache_size] = "128MB"
+default[:postgresql][:wal_buffers] = "64kB"
+default[:postgresql][:maintenance_work_mem] = "16MB"
+default[:postgresql][:synchronous_commit] = "on"
 
 unless Chef::Config[:solo]
   ::Chef::Node.send(:include, Opscode::OpenSSL::Password)
