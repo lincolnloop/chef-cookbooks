@@ -8,6 +8,5 @@ end
 template "#{node['munin']['basedir']}/munin-node.conf" do
   source "munin-node.conf.erb"
   mode 0644
-  variables :munin_servers => munin_servers
   notifies :restart, resources(:service => "munin-node")
 end
