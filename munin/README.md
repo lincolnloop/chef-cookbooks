@@ -1,4 +1,4 @@
-This cookbook is derived (and *greatly* simplified) from the Opscode munin
+This cookbook is derived (and simplified) from the Opscode munin
 cookbook. Just the client for now. The server will likely come later.
 
 The original license and author block is included below.
