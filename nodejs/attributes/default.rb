@@ -1,1 +1,1 @@
-default[:nodejs][:version] = "0.6.1"
+default[:nodejs][:version] = "0.6.17"
